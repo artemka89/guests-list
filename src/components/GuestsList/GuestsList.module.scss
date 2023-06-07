@@ -35,60 +35,11 @@
     opacity: 0.5;
 }
 
-.list {
+.userList {
     margin-top: 30px;
 }
 
-.listItem {
-    margin-top: 15px;
-    display: flex;
-}
 
-.avatar {
-    margin-right: 10px;
-    border-radius: 50%;
-    overflow: hidden;
-    img {
-        width: 60px;
-    }
-}
-
-.userInfo {
-    display: flex;
-    flex: 1 0 auto;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.fullName {
-    font-size: 18px;
-    font-weight: 600;
-    color: rgb(0, 61, 192);
-}
-
-.email {
-    color: #979797;
-}
-
-.plus {
-    width: 30px;
-    color: gray;
-    cursor: pointer;
-    transition: color 0.2s ease-in;
-    &:hover {
-        color: green;
-    }
-}
-
-.minus {
-    width: 30px;
-    color: gray;
-    cursor: pointer;
-    transition: color 0.2s ease-in;
-    &:hover {
-        color: red;
-    }
-}
 
 .bottom {
     display: flex;
