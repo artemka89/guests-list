@@ -1,5 +1,5 @@
 import { BiPlus, BiMinus } from "react-icons/bi";
-import { UserType } from "../../../App";
+import { UserType } from "../../App";
 import styles from "./User.module.scss";
 
 type GuestProps = {
@@ -24,21 +24,19 @@ export const User: React.FC<GuestProps> = ({
                 </div>
                 <div className={styles.email}>@ {user.email}</div>
             </div>
-            {isInvited ? (
-                <BiMinus
-                    onClick={() => {
-                        onClickInvite(user.id);
-                    }}
-                    className={styles.minus}
-                />
-            ) : (
-                <BiPlus
-                    onClick={() => {
-                        onClickInvite(user.id);
-                    }}
-                    className={styles.plus}
-                />
-            )}
+
+            <div
+                onClick={() => {
+                    onClickInvite(user.id);
+                }}
+                className={styles.inviteBtn}
+            >
+                {isInvited ? (
+                    <BiMinus className={styles.minus} />
+                ) : (
+                    <BiPlus className={styles.plus} />
+                )}
+            </div>
         </li>
     );
 };

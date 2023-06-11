@@ -1,6 +1,7 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { GuestsList } from "./components/GuestsList/GuestsList";
+import { Users } from "./components/Users/Users";
 import axios from "axios";
+import { Sucsses } from "./components/Success/Success";
 
 export type UserType = {
     id: number;
@@ -13,7 +14,8 @@ export type UserType = {
 function App() {
     const [users, setUsers] = useState<UserType[]>([]);
     const [searchValue, setSearchValue] = useState("");
-    const [invaites, setInvaites] = useState<number[]>([]);
+    const [invites, setInvites] = useState<number[]>([]);
+    const [sucsses, setSucsses] = useState(false);
 
     useEffect(() => {
         axios("https://reqres.in/api/users")
@@ -29,25 +31,32 @@ function App() {
     };
 
     const onClickInvite = (id: number) => {
-      
-        if (invaites.includes(id)) {
-          setInvaites(prev => prev.filter(_id => _id !== id))
+        if (invites.includes(id)) {
+            setInvites((prev) => prev.filter((_id) => _id !== id));
         } else {
-          setInvaites(prev => [...prev, id])
+            setInvites((prev) => [...prev, id]);
         }
     };
-
-    
+    const onClickSucsses = () => {
+        setSucsses(true);
+    };
 
     return (
         <div className="wrapper">
-            <GuestsList
-                users={users}
-                searchValue={searchValue}
-                onChangeSearchValue={onChangeSearchValue}
-                invaites={invaites}
-                onClickInvite={onClickInvite}
-            />
+            <div className="guestsList">
+                {sucsses ? (
+                    <Sucsses count={invites.length} />
+                ) : (
+                    <Users
+                        users={users}
+                        searchValue={searchValue}
+                        onChangeSearchValue={onChangeSearchValue}
+                        invaites={invites}
+                        onClickInvite={onClickInvite}
+                        onClickSucsses={onClickSucsses}
+                    />
+                )}
+            </div>
         </div>
     );
 }

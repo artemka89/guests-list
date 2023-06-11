@@ -110,8 +110,8 @@ legend {
 }
 
 .wrapper {
-	width: 100%;
-	height: 100vh;
+    width: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -121,4 +121,12 @@ legend {
         rgb(0, 200, 255) 10%,
         rgb(118, 232, 255) 100%
     );
+}
+
+.guestsList {   
+    padding: 20px;
+    width: 400px;
+    height: 600px;
+    background-color: #fff;
+    border-radius: 20px;
 }

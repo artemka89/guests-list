@@ -1,28 +1,29 @@
-import { BiSearchAlt2} from "react-icons/bi";
+import { BiSearchAlt2 } from "react-icons/bi";
 import { UserType } from "../../App";
 
-import styles from "./GuestsList.module.scss";
-import { User } from "./User/User";
+import styles from "./Users.module.scss";
+import { User } from "../User/User";
 import { ChangeEvent } from "react";
 
-type GuestsListProps = {
+type UsersProps = {
     users: UserType[];
     searchValue: string;
     onChangeSearchValue: (event: ChangeEvent<HTMLInputElement>) => void;
     invaites: number[];
     onClickInvite: (id: number) => void;
-
+    onClickSucsses: () => void;
 };
 
-export const GuestsList: React.FC<GuestsListProps> = ({
+export const Users: React.FC<UsersProps> = ({
     users,
     searchValue,
     onChangeSearchValue,
     invaites,
-    onClickInvite
+    onClickInvite,
+    onClickSucsses,
 }) => {
     return (
-        <div className={styles.guestsList}>
+        <div className={styles.users}>
             <div className={styles.top}>
                 <div className={styles.input}>
                     <BiSearchAlt2 className={styles.iconSearch} />
@@ -33,7 +34,7 @@ export const GuestsList: React.FC<GuestsListProps> = ({
                     />
                 </div>
             </div>
-            <ul className={styles.userList}>
+            <ul className={styles.usersList}>
                 {users
                     .filter((user) => {
                         const fullName = user.first_name + user.last_name;
@@ -44,12 +45,21 @@ export const GuestsList: React.FC<GuestsListProps> = ({
                         );
                     })
                     .map((user) => (
-                        <User key={user.id} user={user} onClickInvite={onClickInvite} isInvited={invaites.includes(user.id)}/>
+                        <User
+                            key={user.id}
+                            user={user}
+                            onClickInvite={onClickInvite}
+                            isInvited={invaites.includes(user.id)}
+                        />
                     ))}
             </ul>
-            <div className={styles.bottom}>
-                <button className={styles.btn}>Отправить приглашение</button>
-            </div>
+            {invaites.length > 0 && (
+                <div className={styles.bottom}>
+                    <button onClick={onClickSucsses} className={styles.btn}>
+                        Отправить приглашение
+                    </button>
+                </div>
+            )}
         </div>
     );
 };
